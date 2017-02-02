@@ -43,12 +43,13 @@ module.exports = class TVDB {
     
     season(ids, season) { // tvdb
         return this.client.series.images.query({
-            id: id,
+            id: ids.tvdb,
             keyType: 'season'
-        }).then(d => d.data)
+        }).then(d => this.extractBestForSeason(d.data, season))
     }
     
     episode(ids, season, episode) {
+        // should come to api v2 at some point
         return Promise.resolve(null)
     }
 
@@ -76,6 +77,22 @@ module.exports = class TVDB {
         return {
             poster: this.buildUrl(tmpPoster.fileName),
             fanart: this.buildUrl(tmpFanart.fileName)
+        }
+    }
+
+    extractBestForSeason(images, season) {
+        let tmpPoster
+        
+        for (let poster of images) {
+            if (poster.subKey == season) {
+                if (!tmpPoster) tmpPoster = poster
+
+                if (poster.ratingsInfo.average > tmpPoster.ratingsInfo.average) tmpPoster = poster
+            }
+        }
+        
+        return {
+            poster: this.buildUrl(tmpPoster.fileName)
         }
     }
 

@@ -10,35 +10,35 @@ module.exports = class TMDB {
             langs: ['en', null]
         }
         this.params = {
-            movie: ['imdb', 'tvdb'],
-            show: ['tvdb'],
-            season: ['tvdb'],
-            episode: ['tvdb']
+            movie: ['imdb', 'tmdb'],
+            show: ['imdb', 'tvdb', 'tmdb'],
+            season: ['imdb', 'tvdb', 'tmdb'],
+            episode: ['imdb', 'tvdb', 'tmdb']
         }
     }
     
-    movie(ids) { // imdb, tvdb, tmdb
+    movie(ids) { // imdb, tmdb
         return this.matchId('movie', ids, 'movie_results').then(tmdb =>
-            this.client.movie.image({movie_id: tmdb})
-        )
+            this.client.movie.images({movie_id: tmdb})
+        ).then(this.extractBestForShowMovie.bind(this))
     }
 
-    show(ids) { // tvdb, tmdb
+    show(ids) { // imdb, tvdb, tmdb
         return this.matchId('show', ids, 'tv_results').then(tmdb =>
             this.client.tv.images({tv_id: tmdb})
-        ).then(this.extractBestForShow.bind(this))
+        ).then(this.extractBestForShowMovie.bind(this))
     }
     
-    season(ids, season) { // tvdb, tmdb
+    season(ids, season) { // imdb, tvdb, tmdb
         return this.matchId('season', ids, 'tv_season_results').then(tmdb =>
             this.client.tv.season.images({tv_id: tmdb, season: season})
-        )
+        ).then(this.extractBestForSeason.bind(this))
     }
     
-    episode(ids, season, episode) { // tvdb, tmdb
+    episode(ids, season, episode) { // imdb, tvdb, tmdb
         return this.matchId('episode', ids, 'tv_episode_results').then(tmdb =>
-            this.client.tv.episode.images({tv_id: tmdb, season: season, episode:episode})
-        )
+            this.client.tv.episode.images({tv_id: tmdb, season: season, episode: episode})
+        ).then(this.extractBestForEpisode.bind(this))
     }
 
     matchId(type, ids, match) {
@@ -68,7 +68,7 @@ module.exports = class TMDB {
         })
     }
 
-    extractBestForShow(response) {
+    extractBestForShowMovie(response) {
         let images = {
             poster: null,
             fanart: null
@@ -90,6 +90,39 @@ module.exports = class TMDB {
                 fanart.height >= this.images.minBackdropHeight
             ) {
                 images.fanart = this.buildUrl(fanart.file_path, this.images.backdropSizePath)
+                break
+            }
+        }
+
+        return images
+    }
+
+    extractBestForSeason(response) {
+        let images = {
+            poster: null
+        }
+
+        for (let poster of response.posters) {
+            if (
+                this.images.langs.indexOf(poster.iso_639_1) !== -1 &&
+                poster.width >= this.images.minPosterWidth
+            ) {
+                images.poster = this.buildUrl(poster.file_path, this.images.posterSizePath)
+                break
+            }
+        }
+
+        return images
+    }
+
+    extractBestForEpisode(response) {
+        let images = {
+            screenshot: null
+        }
+
+        for (let screenshot of response.stills) {
+            if (screenshot.height >= this.images.minBackdropHeight) {
+                images.screenshot = this.buildUrl(screenshot.file_path, this.images.backdropSizePath)
                 break
             }
         }

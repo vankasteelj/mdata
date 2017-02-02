@@ -1,3 +1,5 @@
+const util = require('../../utils/util.js')
+
 module.exports = class SHOW {
     constructor(clients) {
         this.clients = clients
@@ -11,7 +13,7 @@ module.exports = class SHOW {
 
         for (let p of this.bestProviders) {
             const provider = this.clients[p]
-            provider.params.show in ids && providers.push(provider)
+            util.inArray(ids, provider.params.show) && providers.push(provider)
         }
 
         if (!providers.length) throw Error('No provider is available for the passed ids')
@@ -41,6 +43,5 @@ module.exports = class SHOW {
 
         return callProvidersAsync(providers, ids)
     }
-
 
 }
