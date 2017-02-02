@@ -1,0 +1,15 @@
+{
+    "name": "metadata",
+    "description": "",
+    "vesion": "0.0.0",
+    "main": "metadata.js",
+    "scripts": {
+        "test": "node ./test.js"
+    },
+    "dependencies": {
+        "fanart.tv": "^2.0.0",
+        "omdbapi": "^2.0.1",
+        "tmdbapi": "^1.0.1",
+        "tvdbapi": "^1.0.1"
+    }
+}

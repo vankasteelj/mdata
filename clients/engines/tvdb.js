@@ -1,0 +1,85 @@
+module.exports = class TVDB {
+    constructor(apiKey) {
+        this.client = new (require('tvdbapi'))({apikey: apiKey})
+        this.images = {
+            url: 'http://thetvdb.com/banners/',
+            minPosterSize: 780,
+            minFanartSize: 720
+        }
+        this.params = {
+            movie: [],
+            show: ['tvdb'],
+            season: ['tvdb'],
+            episode: []
+        }
+    }
+    
+    movie(ids) {
+        return Promise.resolve(null)
+    }
+
+    show(ids) { // tvdb
+        const id = ids.tvdb
+
+        if (!id) throw Error('None of the passed ID can be used')
+
+        let query = this.client.series.images.query
+        let images = Object()
+
+        return query({
+            id: id,
+            keyType: 'poster'
+        }).then(d => {
+            images.posters = d.data
+            return query({
+                id: id,
+                keyType: 'fanart'
+            })
+        }).then(d => {
+            images.fanarts = d.data
+            return images
+        }).then(this.extractBestForShow.bind(this))
+    }
+    
+    season(ids, season) { // tvdb
+        return this.client.series.images.query({
+            id: id,
+            keyType: 'season'
+        }).then(d => d.data)
+    }
+    
+    episode(ids, season, episode) {
+        return Promise.resolve(null)
+    }
+
+    extractBestForShow(images) {
+        let tmpPoster, tmpFanart
+
+        for (let poster of images.posters) {
+            if (!tmpPoster) tmpPoster = poster
+
+            if (
+                poster.resolution.split('x')[1] >= this.images.minPosterSize &&
+                poster.ratingsInfo.average > tmpPoster.ratingsInfo.average
+            ) tmpPoster = poster
+        }
+
+        for (let fanart of images.fanarts) {
+            if (!tmpFanart) tmpFanart = fanart
+
+            if (
+                fanart.resolution.split('x')[1] >= this.images.minFanartSize &&
+                fanart.ratingsInfo.average > tmpFanart.ratingsInfo.average
+            ) tmpFanart = fanart
+        }
+
+        return {
+            poster: this.buildUrl(tmpPoster.fileName),
+            fanart: this.buildUrl(tmpFanart.fileName)
+        }
+    }
+
+    buildUrl(path) {
+        return this.images.url + path
+    }
+}
