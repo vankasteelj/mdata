@@ -1,6 +1,6 @@
 {
-    "name": "metadata",
-    "description": "",
+    "name": "mdata",
+    "description": "Acquire metadata by querying 3rd party APIs",
     "vesion": "0.0.0",
     "main": "metadata.js",
     "scripts": {
