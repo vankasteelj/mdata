@@ -63,7 +63,7 @@ module.exports = class TMDB {
             if (found[match].length) {
                 return found[match][0].id
             } else {
-                throw Error('No tmdb match found')
+                return Promise.reject(Error('No tmdb match found'))
             }
         })
     }
