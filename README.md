@@ -41,6 +41,8 @@ mdata.images.season(args)   // args: Object({imdb, tvdb, tmdb, season})
 mdata.images.episode(args)  // args: Object({imdb, tvdb, tmdb, season, episode})
 ```
 
+_imdb, tvdb, tmdb: only one is required, tmdb is recommended_
+
 ### examples
 
 ```js
