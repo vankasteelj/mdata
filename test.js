@@ -1,20 +1,24 @@
 const API = require('./metadata.js')
 const api = new API({
-    fanart: 'FILL_ME',
-    tmdb: 'FILL_ME',
-    tvdb: 'FILL_ME'
+    //fanart: 'FILL_ME',
+    //tmdb: 'FILL_ME',
+    //tvdb: 'FILL_ME'
 })
 
 
 const Test = (call) => {
     console.time(call.type+' time')
 
-    api.images[call.type](call.ids)
+    return api.images[call.type](call.ids)
         .then(images => {
             console.log(call.title, images)
             console.timeEnd(call.type+' time')
+            return images
         })
-        .catch(console.error)
+}
+
+const Reject = (error, call) => {
+    console.log('Unable to load test for %s, error:', call.type, error)
 }
 
 const movie = {
@@ -59,8 +63,7 @@ const episode = {
     }
 }
 
-
-Test(movie)
-Test(show)
-Test(season)
-Test(episode)
+Test(movie).catch((error) => Reject(error, movie))
+Test(show).catch((error) => Reject(error, show))
+Test(season).catch((error) => Reject(error, season))
+Test(episode).catch((error) => Reject(error, episode))

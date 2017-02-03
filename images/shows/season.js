@@ -12,8 +12,8 @@ module.exports = class SEASON {
         const providers = Array()
 
         for (let p of this.bestProviders) {
-            const provider = this.clients[p]
-            util.inArray(ids, provider.params.season) && providers.push(provider)
+            let provider = this.clients[p]
+            provider && util.inArray(ids, provider.params.season) && providers.push(provider)
         }
 
         if (!providers.length) throw Error('No provider is available for the passed ids')

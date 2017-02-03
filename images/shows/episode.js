@@ -13,7 +13,7 @@ module.exports = class EPISODE {
 
         for (let p of this.bestProviders) {
             let provider = this.clients[p]
-            util.inArray(ids, provider.params.episode) && providers.push(provider)
+            provider && util.inArray(ids, provider.params.episode) && providers.push(provider)
         }
 
         if (!providers.length) throw Error('No provider is available for the passed ids')
