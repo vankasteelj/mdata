@@ -1,8 +1,8 @@
 const API = require('./metadata.js')
 const api = new API({
-    //fanart: 'FILL_ME',
-    //tmdb: 'FILL_ME',
-    //tvdb: 'FILL_ME'
+    fanart: 'FILL_ME',
+    tmdb: 'FILL_ME',
+    tvdb: 'FILL_ME'
 })
 
 
@@ -18,7 +18,7 @@ const Test = (call) => {
 }
 
 const Reject = (error, call) => {
-    console.log('Unable to load test for %s, error:', call.type, error)
+    console.log('Unable to load test for %s.', call.type, error)
 }
 
 const movie = {

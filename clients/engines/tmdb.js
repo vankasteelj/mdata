@@ -54,7 +54,7 @@ module.exports = class TMDB {
             }
         }
 
-        if (!matchingId.id) throw Error('None of the passed ID can be used')
+        if (!matchingId.id) return Promise.reject(Error('None of the passed ID can be used'))
 
         return this.client.find({
             external_id: matchingId.id,

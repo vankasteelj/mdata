@@ -16,7 +16,7 @@ module.exports = class SEASON {
             provider && util.inArray(ids, provider.params.season) && providers.push(provider)
         }
 
-        if (!providers.length) throw Error('No provider is available for the passed ids')
+        if (!providers.length) return Promise.reject(Error('No provider is available for the passed ids'))
 
         let result = {
             poster: null

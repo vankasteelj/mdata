@@ -30,6 +30,7 @@ const mdata = new MData({
     tvdb: <your api key>
 })
 ```
+_note: omdb is the only image engine not requiring an api key_
 
 ### api
 

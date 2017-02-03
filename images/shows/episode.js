@@ -16,7 +16,7 @@ module.exports = class EPISODE {
             provider && util.inArray(ids, provider.params.episode) && providers.push(provider)
         }
 
-        if (!providers.length) throw Error('No provider is available for the passed ids')
+        if (!providers.length) return Promise.reject(Error('No provider is available for the passed ids'))
 
         let result = {
             screenshot: null

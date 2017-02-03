@@ -21,7 +21,7 @@ module.exports = class TVDB {
     show(ids) { // tvdb
         const id = ids.tvdb
 
-        if (!id) throw Error('None of the passed ID can be used')
+        if (!id) return Promise.reject(Error('None of the passed ID can be used'))
 
         let query = this.client.series.images.query
         let images = Object()
