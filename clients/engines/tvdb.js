@@ -1,6 +1,7 @@
 module.exports = class TVDB {
     constructor(apiKey) {
         this.client = new (require('tvdbapi'))({apikey: apiKey})
+        this.clientXML = require('tvdb.js')(apiKey)
         this.images = {
             url: 'http://thetvdb.com/banners/',
             minPosterSize: 780,
