@@ -44,4 +44,12 @@ module.exports = class SHOW {
         return callProvidersAsync(providers, ids)
     }
 
+    getAllImages(ids) {
+        const provider = this.clients.tvdb // the only one
+
+        if (!provider) return Promise.reject(Error('No provider is available for the passed ids'))
+
+        return provider.entire_show(ids)
+    }
+
 }

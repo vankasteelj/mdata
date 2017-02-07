@@ -41,6 +41,14 @@ module.exports = class TVDB {
             return images
         }).then(this.extractBestForShow.bind(this))
     }
+
+    entire_show(ids) { // tvdb
+        const id = ids.tvdb
+
+        if (!id) return Promise.reject(Error('None of the passed ID can be used'))
+
+        return this.clientXML.find(id).then(this.extractAllImages.bind(this))
+    }
     
     season(ids, season) { // tvdb
         return this.client.series.images.query({
@@ -95,6 +103,26 @@ module.exports = class TVDB {
         return {
             poster: this.buildUrl(tmpPoster.fileName)
         }
+    }
+
+    extractAllImages(response) {
+        let result = {
+            show: {
+                fanart: this.buildUrl(response.fanart),
+                poster: this.buildUrl(response.poster)
+            },
+            seasons: Object()
+        }
+
+        for (let ep of response.episodes) {
+            let numS = ep.season, numE = ep.number
+            
+            if (!result.seasons[numS]) result.seasons[numS] = Object()
+
+            result.seasons[numS][numE] = this.buildUrl(ep.filename)
+        }
+
+        return result
     }
 
     buildUrl(path) {
