@@ -35,10 +35,11 @@ _note: omdb is the only image engine not requiring an api key_
 ### api
 
 ```js
-mdata.images.movie(args)    // args: Object({imdb, tmdb})
-mdata.images.show(args)     // args: Object({imdb, tvdb, tmdb})
-mdata.images.season(args)   // args: Object({imdb, tvdb, tmdb, season})
-mdata.images.episode(args)  // args: Object({imdb, tvdb, tmdb, season, episode})
+mdata.images.movie(args)        // args: Object({imdb, tmdb})
+mdata.images.show(args)         // args: Object({imdb, tvdb, tmdb})
+mdata.images.season(args)       // args: Object({imdb, tvdb, tmdb, season})
+mdata.images.episode(args)      // args: Object({imdb, tvdb, tmdb, season, episode})
+mdata.images.entire_show(args)  // args: Object({tvdb})
 ```
 
 _imdb, tvdb, tmdb: only one is required, tmdb is recommended_
