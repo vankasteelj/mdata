@@ -29,7 +29,7 @@ module.exports = class OMDB {
     
     episode(ids, season, episode) { //imdb
         return this.client.get({
-            id: ids.imds,
+            id: ids.imdb,
             season: season,
             episode: episode,
             type: 'episode'
