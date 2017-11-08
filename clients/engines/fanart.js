@@ -33,17 +33,13 @@ module.exports = class FANART {
         }
 
         for (let poster of response.tvposter) {
-            if (poster.lang === 'en') {
-                images.poster = poster.url
-                break
-            }
+            images.poster = poster.url
+            if (poster.lang === 'en' || poster.lang === '') break
         }
 
         for (let fanart of response.showbackground) {
-            if (fanart.lang === 'en') {
-                images.fanart = fanart.url
-                break
-            }
+            images.fanart = fanart.url
+            if (fanart.lang === 'en' || fanart.lang === '') break
         }
 
         return images
@@ -56,17 +52,13 @@ module.exports = class FANART {
         }
 
         for (let poster of response.movieposter) {
-            if (poster.lang === 'en') {
-                images.poster = poster.url
-                break
-            }
+            images.poster = poster.url
+            if (poster.lang === 'en' || poster.lang === '') break
         }
 
         for (let fanart of response.moviebackground) {
-            if (fanart.lang === 'en') {
-                images.fanart = fanart.url
-                break
-            }
+            images.fanart = fanart.url
+            if (fanart.lang === 'en' || fanart.lang === '') break
         }
 
         return images
@@ -78,9 +70,9 @@ module.exports = class FANART {
         }
 
         for (let poster of response.seasonposter) {
-            if (poster.lang === 'fr' && poster.season == season) {
+            if (poster.season == season) {
                 images.poster = poster.url
-                break
+                if (poster.lang === 'en' || post.lang == '') break
             }
         }
 
