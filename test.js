@@ -2,7 +2,8 @@ const API = require('./metadata.js')
 const api = new API({
     fanart: 'FILL_ME',
     tmdb: 'FILL_ME',
-    tvdb: 'FILL_ME'
+    tvdb: 'FILL_ME',
+    omdb: 'FILL_ME'
 })
 
 
@@ -31,12 +32,12 @@ const movie = {
 }
 
 const show = {
-    title: 'The Big Bang Theory',
+    title: 'Baron Noir',
     type: 'show',
     ids: {
-        tvdb: 80379,
-        imdb: 'tt0898266',
-        tmdb: 1418
+        tvdb: '306246',
+        //imdb: 'tt4835480',
+        //tmdb: 65430
     }
 }
 

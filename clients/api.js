@@ -1,7 +1,7 @@
 module.exports = class CLIENTS {
     constructor(apiKeys) {
         for (let c of ['fanart', 'omdb', 'tmdb', 'tvdb']) 
-            if (apiKeys[c] || c == 'omdb') this[c] = this.construct(c, apiKeys[c])
+            if (apiKeys[c]) this[c] = this.construct(c, apiKeys[c])
 
         return this
     }

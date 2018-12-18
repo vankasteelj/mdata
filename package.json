@@ -23,10 +23,10 @@
         "test": "node ./test.js"
     },
     "dependencies": {
-        "fanart.tv": "^2.0.0",
-        "omdbapi": "^2.0.1",
-        "tmdbapi": "^1.0.2",
-        "tvdbapi": "^1.0.1",
-        "tvdb.js": "^1.0.2"
+        "fanart.tv": "^2.1.0",
+        "omdbapi": "^3.0.0",
+        "tmdbapi": "^1.1.0",
+        "tvdb.js": "^1.0.7",
+        "tvdbapi": "^1.1.0"
     }
 }

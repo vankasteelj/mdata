@@ -1,6 +1,6 @@
 module.exports = class OMDB {
-    constructor() {
-        this.client = require('omdbapi')
+    constructor(apiKey) {
+        this.client = new (require('omdbapi'))(apiKey);
         this.params = {
             movie: ['imdb'],
             show: ['imdb'],

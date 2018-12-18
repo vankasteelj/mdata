@@ -27,10 +27,10 @@ const MData = require('mdata')
 const mdata = new MData({
     fanart: <your api key>,
     tmdb: <your api key>,
-    tvdb: <your api key>
+    tvdb: <your api key>,
+    omdb: <your api key>
 })
 ```
-_note: omdb is the only image engine not requiring an api key_
 
 ### api
 
@@ -42,13 +42,13 @@ mdata.images.episode(args)      // args: Object({imdb, tvdb, tmdb, season, episo
 mdata.images.entire_show(args)  // args: Object({tvdb})
 ```
 
-_imdb, tvdb, tmdb: only one is required, tmdb is recommended_
+_imdb, tvdb, tmdb: only one is required, tmdb is recommended though_
 
 ### examples
 
 ```js
 mdata.images.episode({imdb: 'tt0898266', season: 1, episode: 1})
-    .then(images => console.log(images))
+    .then(console.log).catch(console.error);
 ```
 
 ## License 
