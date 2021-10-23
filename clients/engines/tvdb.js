@@ -14,6 +14,12 @@ module.exports = class TVDB {
 
         if (!id) return Promise.reject(Error('None of the passed ID can be used'))
 
+        return Promise.resolve({
+          poster: `https://artworks.thetvdb.com/banners/posters/${id}-1.jpg`,
+          fanart: `https://artworks.thetvdb.com/banners/fanart/original/${id}-1.jpg`
+        })
+
+        /*
         let query = this.client.movies.get
         let images = Object()
 
@@ -23,7 +29,7 @@ module.exports = class TVDB {
             return {
               poster: d.data.image
             }
-        })
+        })*/
     }
 
     show(ids) { // tvdb
@@ -31,6 +37,13 @@ module.exports = class TVDB {
 
         if (!id) return Promise.reject(Error('None of the passed ID can be used'))
 
+        //workaround in v4
+        return Promise.resolve({
+          poster: `https://artworks.thetvdb.com/banners/posters/${id}-1.jpg`,
+          fanart: `https://artworks.thetvdb.com/banners/fanart/original/${id}-1.jpg`
+        })
+
+        /* normal way
         let query = this.client.series.get
         let images = Object()
 
@@ -40,7 +53,7 @@ module.exports = class TVDB {
             return {
               poster: d.data.image
             }
-        })
+        })*/
     }
     
     season(ids, season) {
