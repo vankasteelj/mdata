@@ -27,7 +27,8 @@ const movie = {
     type: 'movie',
     ids: {
         imdb: 'tt2488496', 
-        tmdb: 140607
+        tmdb: 140607,
+        tvdb: 213
     }
 }
 
@@ -36,8 +37,8 @@ const show = {
     type: 'show',
     ids: {
         tvdb: '306246',
-        //imdb: 'tt4835480',
-        //tmdb: 65430
+        imdb: 'tt4835480',
+        tmdb: 65430
     }
 }
 

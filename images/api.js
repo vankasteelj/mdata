@@ -16,11 +16,7 @@ module.exports = class IMAPI {
             episode: (ids) => {
                 const episode = new (require('./shows/episode.js'))(clients)
                 return episode.getImages(ids)
-            },
-            entire_show: (ids) => {
-                const show = new (require('./shows/show.js'))(clients)
-                return show.getAllImages(ids)
-            },
+            }
         }
     }
 }

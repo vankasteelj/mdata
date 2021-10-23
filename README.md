@@ -39,7 +39,6 @@ mdata.images.movie(args)        // args: Object({imdb, tmdb})
 mdata.images.show(args)         // args: Object({imdb, tvdb, tmdb})
 mdata.images.season(args)       // args: Object({imdb, tvdb, tmdb, season})
 mdata.images.episode(args)      // args: Object({imdb, tvdb, tmdb, season, episode})
-mdata.images.entire_show(args)  // args: Object({tvdb})
 ```
 
 _imdb, tvdb, tmdb: only one is required, tmdb is recommended though_
@@ -53,7 +52,7 @@ mdata.images.episode({imdb: 'tt0898266', season: 1, episode: 1})
 
 ## License 
 
-The MIT License - Copyright (c) 2017 Jean van Kasteel <vankasteelj@gmail.com>
+The MIT License - Copyright (c) 2021 Jean van Kasteel <vankasteelj@gmail.com>
 
 >Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
