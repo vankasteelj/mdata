@@ -1,7 +1,7 @@
 {
     "name": "mdata",
     "description": "Acquire metadata by querying 3rd party APIs",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "main": "metadata.js",
     "repository": {
         "type": "git",
