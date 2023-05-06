@@ -1,7 +1,7 @@
 {
     "name": "mdata",
     "description": "Acquire metadata by querying 3rd party APIs",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "main": "metadata.js",
     "repository": {
         "type": "git",
@@ -23,9 +23,9 @@
         "test": "node ./test.js"
     },
     "dependencies": {
-        "fanart.tv": "^2.1.0",
-        "omdbapi": "^3.0.0",
-        "tmdbapi": "^1.1.0",
-        "tvdbapi": "^2.0.0"
+        "fanart.tv": "^2.1.2",
+        "omdbapi": "^3.0.2",
+        "tmdbapi": "^1.1.3",
+        "tvdbapi": "^2.0.2"
     }
 }
