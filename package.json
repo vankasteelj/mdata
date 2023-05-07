@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "fanart.tv": "^2.1.2",
-    "omdbapi": "^3.0.2",
+    "omdbapi": "4.0.0",
     "tmdbapi": "^1.1.3",
     "tvdbapi": "2.1.0"
   }
