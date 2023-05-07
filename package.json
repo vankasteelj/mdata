@@ -26,6 +26,6 @@
     "fanart.tv": "^2.1.2",
     "omdbapi": "^3.0.2",
     "tmdbapi": "^1.1.3",
-    "tvdbapi": "^2.0.2"
+    "tvdbapi": "2.1.0"
   }
 }
